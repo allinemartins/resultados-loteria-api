@@ -9,7 +9,7 @@ module.exports.calcularDadosEstatisticos = function (sorteios, objetoEstatistico
 }
 
 function getFrequenciaUltimoSorteioAtraso(sorteios, frequencias) {
-    let lastSorteio = sorteios[0];
+    let lastSorteio = sorteios[0].concurso;
     sorteios.forEach((sorteio) => {        
         sorteio.dezenas.forEach((numero) => {
             frequencias[numero].sorteado++;
