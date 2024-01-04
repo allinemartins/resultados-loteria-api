@@ -81,10 +81,15 @@ function verificaDataUltimoSorteio() {
           jogo.dataProximoConcurso = data.dataProximoConcurso;
           jogos['lotoFacil'] = jogo;
 
+          let dezenas = [];
+          data.listaDezenas.forEach((numero) => {
+            dezenas.push(Number(numero));
+          })
+
           const newJogo = {
             "concurso": jogo.ultimoConcurso,
             "data": jogo.data,
-            "dezenas": data.listaDezenas
+            "dezenas": dezenas
           };
 
           jogosLotoFacil.unshift(newJogo);

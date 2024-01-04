@@ -1,7 +1,7 @@
 {
     "1": {
         "sorteado": 1794,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 17,
@@ -9,7 +9,7 @@
     },
     "2": {
         "sorteado": 1782,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 9,
         "maiorFrequencia": 13,
@@ -17,7 +17,7 @@
     },
     "3": {
         "sorteado": 1804,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 9,
         "maiorFrequencia": 18,
@@ -25,7 +25,7 @@
     },
     "4": {
         "sorteado": 1803,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 13,
@@ -33,7 +33,7 @@
     },
     "5": {
         "sorteado": 1803,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 10,
         "maiorFrequencia": 14,
@@ -41,7 +41,7 @@
     },
     "6": {
         "sorteado": 1748,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 8,
         "maiorFrequencia": 14,
@@ -49,7 +49,7 @@
     },
     "7": {
         "sorteado": 1761,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 11,
         "maiorFrequencia": 25,
@@ -57,7 +57,7 @@
     },
     "8": {
         "sorteado": 1729,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 11,
         "maiorFrequencia": 13,
@@ -65,7 +65,7 @@
     },
     "9": {
         "sorteado": 1799,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 9,
         "maiorFrequencia": 13,
@@ -73,7 +73,7 @@
     },
     "10": {
         "sorteado": 1860,
-        "atrasado": 5,
+        "atrasado": null,
         "ultimoSorteio": 2988,
         "maiorGape": 9,
         "maiorFrequencia": 18,
@@ -81,7 +81,7 @@
     },
     "11": {
         "sorteado": 1845,
-        "atrasado": 2,
+        "atrasado": null,
         "ultimoSorteio": 2991,
         "maiorGape": 7,
         "maiorFrequencia": 14,
@@ -89,7 +89,7 @@
     },
     "12": {
         "sorteado": 1795,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 10,
         "maiorFrequencia": 15,
@@ -97,7 +97,7 @@
     },
     "13": {
         "sorteado": 1826,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 12,
@@ -105,7 +105,7 @@
     },
     "14": {
         "sorteado": 1823,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 12,
         "maiorFrequencia": 18,
@@ -113,7 +113,7 @@
     },
     "15": {
         "sorteado": 1769,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 10,
         "maiorFrequencia": 13,
@@ -121,7 +121,7 @@
     },
     "16": {
         "sorteado": 1716,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 11,
@@ -129,7 +129,7 @@
     },
     "17": {
         "sorteado": 1766,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 11,
         "maiorFrequencia": 14,
@@ -137,7 +137,7 @@
     },
     "18": {
         "sorteado": 1793,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 17,
@@ -145,7 +145,7 @@
     },
     "19": {
         "sorteado": 1782,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 13,
         "maiorFrequencia": 11,
@@ -153,7 +153,7 @@
     },
     "20": {
         "sorteado": 1886,
-        "atrasado": 4,
+        "atrasado": null,
         "ultimoSorteio": 2989,
         "maiorGape": 8,
         "maiorFrequencia": 18,
@@ -161,7 +161,7 @@
     },
     "21": {
         "sorteado": 1776,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 11,
         "maiorFrequencia": 15,
@@ -169,7 +169,7 @@
     },
     "22": {
         "sorteado": 1788,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 8,
         "maiorFrequencia": 12,
@@ -177,7 +177,7 @@
     },
     "23": {
         "sorteado": 1751,
-        "atrasado": 1,
+        "atrasado": null,
         "ultimoSorteio": 2992,
         "maiorGape": 8,
         "maiorFrequencia": 12,
@@ -185,7 +185,7 @@
     },
     "24": {
         "sorteado": 1824,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 8,
         "maiorFrequencia": 14,
@@ -193,7 +193,7 @@
     },
     "25": {
         "sorteado": 1842,
-        "atrasado": 0,
+        "atrasado": null,
         "ultimoSorteio": 2993,
         "maiorGape": 12,
         "maiorFrequencia": 13,
