@@ -34,16 +34,16 @@ app.get('/jogos-lotofacil', function (req, res) {
 
 app.get('/estatisticas-lotofacil', function (req, res) {
   //implementar logica para verificar se a data atual condiz que ha outros jogos para serem verificados
-  verificaDataUltimoSorteio();
+  //verificaDataUltimoSorteio();
 
-  let recalculo = calculoEstatisticos.calcularDadosEstatisticos(jogosLotoFacil, dadosEstatisticosLotoFacil);
+  /*let recalculo = calculoEstatisticos.calcularDadosEstatisticos(jogosLotoFacil, dadosEstatisticosLotoFacil);
   fs.writeFile("estatisticas-lotofacil.json", JSON.stringify(recalculo), err => {
     // Checking for errors
     if (err) throw err;
     console.log("Done writing in the estatisticas"); // Success
-  });
+  });*/
 
-  res.send(JSON.stringify(recalculo));
+  res.send(JSON.stringify(estatisticas-lotofacil));
 });
 
 app.listen(porta, function () {
