@@ -43,7 +43,7 @@ app.get('/estatisticas-lotofacil', function (req, res) {
     console.log("Done writing in the estatisticas"); // Success
   });*/
 
-  res.send(JSON.stringify(estatisticas-lotofacil));
+  res.send(JSON.stringify(dadosEstatisticosLotoFacil));
 });
 
 app.listen(porta, function () {
