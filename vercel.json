@@ -4,8 +4,9 @@
     {
       "src": "app.js",
       "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["./public/games.json", "./public/informations.json", "./public/lotoFacil.json", "./public/megaSena.json", "./public/quina.json"]
+      "commands": {
+        "build": "npm install",
+        "postbuild": "chmod -R 777 ./data-files"
       }
     }
   ],
