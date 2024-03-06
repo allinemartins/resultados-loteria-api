@@ -11,5 +11,8 @@
         "src": "/(.*)",
         "dest": "app.js"
       }
-    ]
+    ],
+    "scripts": {
+      "job": "node job-script.js"
+    }
   }
