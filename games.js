@@ -1,10 +1,12 @@
-let games = require('./data-files/games.json');
+const nmFile = 'games';
+const commons = require('./commons');
+let games = require(`./data-files/${nmFile}.json`);
 
 class Games {
 
     setGame(name, game) {
         games[name] = game;
-        this.writeFile(games);        
+        commons.writeFile(games, nmFile);
     }
 
     getGame(name) {
@@ -14,17 +16,6 @@ class Games {
     getAllGames() {
         return games;
     }
-
-    writeFile(newObject) {
-        //reescrever o arquivo json 
-        const fs = require("fs");
-        fs.writeFile(`./data-files/games.json`, JSON.stringify(newObject), err => {
-            // Checking for errors
-            if (err) throw err;
-            console.log(`Done writing in the games`); // Success
-        });
-    }
-
 }
 
 // Export the object

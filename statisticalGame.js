@@ -1,6 +1,7 @@
 const axios = require('axios');
 const https = require('https');
 const Games = require('./games');
+const commons = require('./commons');
 
 const calculeStatistica = require('./statisticalData');
 const apiURL = 'https://servicebus2.caixa.gov.br/portaldeloterias/api/';
@@ -18,15 +19,8 @@ class StatisticalGame {
     }
 
     getDataGame() {
-        if (this.name == 'lotoFacil') {
-            return require('./data-files/lotoFacil.json');
-        }
-        if (this.name == 'megaSena') {
-            return require('./data-files/megaSena.json');
-        }
-
-        if (this.name == 'quina') {
-            return require('./data-files/quina.json');
+        if(this.name){
+            return require(`./data-files/${this.name}.json`);
         }
         return {};
     }
@@ -64,8 +58,9 @@ class StatisticalGame {
             const data = await this.madeRequest(gameAPIUrl);
             if (data) {
                 this.setDataGame(data);
+                return true;
             }
-            return true;
+            return false;
         }
         return false;
     }
@@ -110,16 +105,10 @@ class StatisticalGame {
     }
 
     writeFile(newGame) {
-        //reescrever o arquivo json 
-        const fs = require("fs");
         let data = this.getDataGame();
         if (data) {
             data.unshift(newGame);
-            fs.writeFile(`./data-files/${this.name}.json`, JSON.stringify(data), err => {
-                // Checking for errors
-                if (err) throw err;
-                console.log(`Done writing in the games of ${this.name}`); // Success
-            });
+            commons.writeFile(data, this.name);
         }
     }
 

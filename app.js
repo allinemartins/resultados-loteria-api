@@ -1,4 +1,5 @@
 const express = require('express');
+const cron = require('./controllers/cron.js');
 const bodyParser = require('body-parser');
 
 // Importa a classe Games
@@ -13,8 +14,7 @@ const port = 8000;
 app.use(bodyParser.json());
 
 // Main Route
-app.get('/', (_req, res) => {
-  setLastScript('/');
+app.get('/', (_req, res) => {  
   res.status(200).json('Welcome, your app is working well');
 });
 
@@ -72,25 +72,5 @@ app.get('/statisticalData/:name', (req, res) => {
 
 });
 
-app.get('/updateData', (req, res) => {  
-  res.status(200).json('The update data, your app is working well');
-});
-
-app.get('/updateData/:name', async (req, res) => {
-  setLastScript(`/updateData/${req.params.name}`);
-  let controle = true;
-  while (controle) {
-    const statistica = new StatisticalGame(req.params.name);
-    const dataApi = await statistica.getApiData();    
-    if (!dataApi) {
-      controle = false;
-    }
-  }
-  res.status(200).json(`Update finished!`);
-});
-
-function setLastScript(name){
-  const info = new Informations();
-  info.setInformations(name);
-}
-
+///job
+app.use('/cron/:name', cron);
