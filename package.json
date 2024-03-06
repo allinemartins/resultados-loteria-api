@@ -4,8 +4,7 @@
   "description": "Api with results the drawns of Caixa",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "chmod -R 755 ./data-files"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "node.js",

@@ -3,11 +3,7 @@
   "builds": [
     {
       "src": "app.js",
-      "use": "@vercel/node",
-      "commands": {
-        "build": "npm install",
-        "postbuild": "chmod -R 777 ./data-files"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
