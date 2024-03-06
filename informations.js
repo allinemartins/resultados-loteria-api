@@ -14,8 +14,12 @@ class Informations {
 
     writeFile(newObject) {
         //reescrever o arquivo json 
-        const fs = require("fs");
-        fs.writeFile(`./data-files/informations.json`, JSON.stringify(newObject), err => {
+        const path = require('path');
+        const fs = require('fs');
+
+        const filePath = path.join(__dirname, 'data-files', 'informations.json');
+
+        fs.writeFile(filePath, JSON.stringify(newObject), err => {
             // Checking for errors
             if (err) throw err;
             console.log(`Done writing in the informations`); // Success
