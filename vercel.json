@@ -12,7 +12,7 @@
       "dest": "*.js"
     }
   ],
-  "crons": [
+  "cron": [
     {
       "path": "/cron/lotoFacil",
       "schedule": "* * * * *"
