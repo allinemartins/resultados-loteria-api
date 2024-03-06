@@ -1,6 +1,5 @@
-let info = require('./data-files/informations.json');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const tmp = require('tmp');
 
 class Informations {
@@ -15,11 +14,15 @@ class Informations {
 
         this.writeFile(tempFilePath, info);
 
-        // Mover o arquivo temporário para o local desejado
+        // Copiar o conteúdo do arquivo temporário para o destino
         const finalFilePath = path.join(__dirname, 'data-files', 'informations.json');
-        fs.rename(tempFilePath, finalFilePath, err => {
-            if (err) throw err;
 
+        const readStream = fs.createReadStream(tempFilePath);
+        const writeStream = fs.createWriteStream(finalFilePath);
+
+        readStream.pipe(writeStream);
+
+        writeStream.on('finish', () => {
             // Limpar o arquivo temporário se necessário
             tempFileInfo.removeCallback();
 
