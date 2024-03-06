@@ -1,16 +1,21 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "*.js"
+    }
+  ],
   "crons": [
     {
-      "path": "/api/every-minute",
+      "path": "/cron/lotoFacil",
       "schedule": "* * * * *"
-    },
-    {
-      "path": "/api/every-hour",
-      "schedule": "0 * * * *"
-    },
-    {
-      "path": "/api/every-day",
-      "schedule": "0 0 * * *"
     }
   ]
 }
