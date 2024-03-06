@@ -5,8 +5,10 @@ const tmp = require('tmp');
 class Informations {
 
     setInformations(lastScriptCron) {
-        info.lastScript = lastScriptCron;
-        info.lastDatetime = new Date();
+        const info = {
+            "lastScript": lastScriptCron,
+            "lastDatetime": new Date()
+        }
 
         // Criar um arquivo temporário de forma segura
         const tempFileInfo = tmp.fileSync({ postfix: '.json' });
@@ -31,6 +33,7 @@ class Informations {
     }
 
     getInformations() {
+        const info = require('./data-files/informations.json');
         return info;
     }
 
