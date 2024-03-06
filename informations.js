@@ -1,4 +1,4 @@
-let info = require('./informations.json');
+let info = require('informations.json');
 
 class Informations {
 
