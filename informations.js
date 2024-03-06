@@ -1,6 +1,7 @@
 let info = require('./data-files/informations.json');
 const path = require('path');
 const fs = require('fs');
+const tmp = require('tmp');
 
 class Informations {
 
@@ -8,14 +9,20 @@ class Informations {
         info.lastScript = lastScriptCron;
         info.lastDatetime = new Date();
 
-        // Criar um arquivo temporário
-        const tempFilePath = path.join(__dirname, 'data-files', 'informations_temp.json');
+        // Criar um arquivo temporário de forma segura
+        const tempFileInfo = tmp.fileSync({ postfix: '.json' });
+        const tempFilePath = tempFileInfo.name;
+
         this.writeFile(tempFilePath, info);
 
         // Mover o arquivo temporário para o local desejado
         const finalFilePath = path.join(__dirname, 'data-files', 'informations.json');
         fs.rename(tempFilePath, finalFilePath, err => {
             if (err) throw err;
+
+            // Limpar o arquivo temporário se necessário
+            tempFileInfo.removeCallback();
+
             console.log(`Done writing in the informations`);
         });
     }
@@ -26,10 +33,8 @@ class Informations {
 
     writeFile(filePath, newObject) {
         // Escrever no arquivo temporário
-        fs.writeFile(filePath, JSON.stringify(newObject), err => {
-            if (err) throw err;
-            console.log(`Done writing in the temporary file`);
-        });
+        fs.writeFileSync(filePath, JSON.stringify(newObject));
+        console.log(`Done writing in the temporary file`);
     }
 
 }
