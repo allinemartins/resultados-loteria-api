@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "app.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["./public/games.json", "./public/informations.json", "./public/lotoFacil.json", "./public/megaSena.json", "./public/quina.json"]
+      }
     }
   ],
   "routes": [
