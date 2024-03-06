@@ -12,22 +12,24 @@
         "dest": "app.js"
       }
     ],
-    "crons": [
-      {
-        "path": "/",
-        "schedule": "* * * * *" 
-      },
-      {
-        "path": "/updateData/lotoFacil",
-        "schedule": "0 22 * * *"
-      },
-      {
-        "path": "/updateData/megaSena",
-        "schedule": "30 22 * * 2,4,6"
-      },
-      {
-        "path": "/updateData/quina",
-        "schedule": "0 23 * * 1-6"
-      }
-    ]
+    "scripts":{
+      "crons": [
+        {
+          "path": "/",
+          "schedule": "* * * * *" 
+        },
+        {
+          "path": "/updateData/lotoFacil",
+          "schedule": "0 22 * * *"
+        },
+        {
+          "path": "/updateData/megaSena",
+          "schedule": "30 22 * * 2,4,6"
+        },
+        {
+          "path": "/updateData/quina",
+          "schedule": "0 23 * * 1-6"
+        }
+      ]
+    }
   }
