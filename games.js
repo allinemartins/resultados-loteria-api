@@ -1,4 +1,4 @@
-let games = require('./games.json');
+let games = require('./data-files/games.json');
 
 class Games {
 

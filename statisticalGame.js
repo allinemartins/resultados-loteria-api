@@ -19,14 +19,14 @@ class StatisticalGame {
 
     getDataGame() {
         if (this.name == 'lotoFacil') {
-            return require('./lotoFacil.json');
+            return require('./data-files/lotoFacil.json');
         }
         if (this.name == 'megaSena') {
-            return require('./megaSena.json');
+            return require('./data-files/megaSena.json');
         }
 
         if (this.name == 'quina') {
-            return require('./quina.json');
+            return require('./data-files/quina.json');
         }
         return {};
     }
@@ -115,7 +115,7 @@ class StatisticalGame {
         let data = this.getDataGame();
         if (data) {
             data.unshift(newGame);
-            fs.writeFile(`${this.name}.json`, JSON.stringify(data), err => {
+            fs.writeFile(`./data-files/${this.name}.json`, JSON.stringify(data), err => {
                 // Checking for errors
                 if (err) throw err;
                 console.log(`Done writing in the games of ${this.name}`); // Success
