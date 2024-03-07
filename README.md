@@ -25,5 +25,5 @@ npm install
 
 # Iniciar projeto
 ```bash
-node app
+node index
 ```

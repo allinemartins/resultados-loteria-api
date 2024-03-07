@@ -1,0 +1,29 @@
+[
+    {
+        "name": "lotoFacil",
+        "last_draw": 3045,
+        "date_last_draw": "05/03/2024",
+        "next_draw": 3046,
+        "date_next_draw": "06/03/2024",
+        "number_min": 1,
+        "number_max": 25
+    },
+    {
+        "name": "megaSena",
+        "last_draw": 2696,
+        "date_last_draw": "05/03/2024",
+        "next_draw": 2697,
+        "date_next_draw": "07/03/2024",
+        "number_min": 1,
+        "number_max": 60
+    },
+    {
+        "name": "quina",
+        "last_draw": 6382,
+        "date_last_draw": "05/03/2024",
+        "next_draw": 6383,
+        "date_next_draw": "06/03/2024",
+        "number_min": 1,
+        "number_max": 80
+    }
+]
