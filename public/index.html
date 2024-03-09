@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentação da API que há rotas fornecendo informações das rotas com detalhes dos resultados da Loteria - Caixa. Consulte os detalhes sobre cada rota.">
+    <meta name="keywords" content="API, documentação, loteria, caixa, dados estatísticos, LotoFácil, MegaSena, Quina">
+    <meta name="author" content="Alline Martins">
+    <meta name="robots" content="index, follow">
+    <title>API Resultados Loteria - Caixa</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="icon" href="./src/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <h1>API Resultados Loteria - Caixa</h1>
+</header>
+
+<div id="content">
+    <h2>Descrição</h2>
+    <p>Esta API fornece informações sobre diferentes rotas. Consulte as seções abaixo para obter detalhes sobre cada rota.</p>
+
+    <div class="route">
+        <h2>Status da API</h2>
+        <p>Status: <span>Online</span></p>
+    </div>
+
+    <div class="route">
+        <h2>Rota 1: /api/lottery-results/games</h2>
+        <p>Retorna uma lista dos dados gerais de cada jogo da Loteria.</p>        
+        <a href="javascript:void(0)" class="href-example" onclick="redirectWithBaseUrl('/api/lottery-results/games')">Games</a>
+        <pre class="json-example show">
+            {
+                "game_id": 4,
+                "name": "quina",
+                "last_draw": 6382,
+                "next_draw": 6383,
+                "date_last_draw": "2024-05-03T03:00:00.000Z",
+                "date_next_draw": "2024-06-03T03:00:00.000Z",
+                "number_min": 1,
+                "number_max": 80,
+                "date_update": "2024-03-07T03:00:00.000Z"
+            }
+        </pre>
+    </div>
+
+    <div class="route">
+        <h2>Rota 2: /api/lottery-results/games/:nomeGame</h2>
+        <p>Retorna todos os sorteios de cada jogo.</p>
+        <a href="javascript:void(0)" class="href-example" onclick="redirectWithBaseUrl('/api/lottery-results/games/lotoFacil')">Sorteio</a>
+        <pre class="json-example show">
+            {
+                "game_draw_id": 1,
+                "game_id": 5,
+                "draw": 3045,
+                "date_draw": "2024-05-03T03:00:00.000Z",
+                "scores": "{\"2\",\"3\",\"5\",\"8\",\"9\",\"10\",\"12\",\"15\",\"16\",\"17\",\"18\",\"20\",\"21\",\"23\",\"25\"}",
+                "date_update": "2024-03-07T03:00:00.000Z"
+            }
+        </pre>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Documentação da API</p>
+</footer>
+<script src="./src/main.js"></script>
+</body>
+</html>
