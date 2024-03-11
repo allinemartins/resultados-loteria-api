@@ -1,58 +1,47 @@
 const gamesModel = require('./../models/games.model');
 
 const gamesController = {
-    getAllGames: async(req, res) => {
-        try {            
-            const { data } = await gamesModel.getAllGames();            
-            res.json({msg: "OK", data: data})
+    getAllGames: async (req, res) => {
+        try {
+            const { data } = await gamesModel.getAllGames();
+            res.json({ msg: "OK", data: data })
         } catch (error) {
-            res.json({msg: error.msg})
+            res.json({ msg: error.msg })
         }
     },
 
-    getAllGameDraws: async(req, res) => {
-        try {            
-            const { data } = await gamesModel.getAllGameDraws(req.params.game);
-            res.json({msg: "OK", data: data})
+    getGame: async(param) => {
+        try {
+            const { data } = await gamesModel.getGame(param);
+            return { msg: "OK", data: (data) ? data[0] : 'Not found' };
         } catch (error) {
-            res.json({msg: error.msg})
+            return { msg: error };
+        }
+    },
+
+    getAllGameDraws: async (req, res) => {
+        try {
+            const { data } = await gamesModel.getAllGameDraws(req.params.game);
+            res.json({ msg: "OK", data: data })
+        } catch (error) {
+            res.json({ msg: error.msg })
         }
     },
 
     //insertPreData
-    insertPreDataGame: async () => {
+    insertPreDataGame: async (data) => {
         try {
-            const data = require('./../pre-data/games.json');
-            let rowsInserts = 0;
-    
-            if (data && data.length > 0) {
-                await Promise.all(data.map(async value => {
-                    const insertRow = await gamesModel.insertDataGame(value);                    
-                    if (insertRow && insertRow.msg === "OK") {
-                        rowsInserts++;
-                    }
-                }));
-            }    
-            return { msg: "OK", data: [rowsInserts] };
+            const insertRow = await gamesModel.insertDataGame(data);
+            return { msg: "OK", data: insertRow };
         } catch (error) {
             console.error(error);
         }
     },
 
-    insertPreDataGameDraw: async (nmFileDraws, GAME_ID) => {
-        try {
-            const data = require(`./../pre-data/${nmFileDraws}.json`);
-            let rowsInserts = 0;
-            if (data && data.length > 0) {
-                await Promise.all(data.map(async value => {
-                    const insertRow = await gamesModel.insertDataGameDraw(value, GAME_ID);
-                    console.log(insertRow);                    
-                    if (insertRow && insertRow.msg === "OK") {
-                        rowsInserts++;
-                    }
-                }));
-            }    
-            return { msg: "OK", data: [rowsInserts] };
+    insertPreDataGameDraw: async (data, idGame) => {
+        try {            
+            const insertRow = await gamesModel.insertDataGameDraw(data, idGame);
+            return { msg: "OK", data: insertRow };
         } catch (error) {
             console.error(error);
         }

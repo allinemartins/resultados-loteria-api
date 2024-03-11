@@ -1,4 +1,6 @@
 const postgre = require('../database');
+const Commons = require('../commons');
+const functionCommons = new Commons();
 
 const gamesModel = {
     getAllGames: async() => {
@@ -7,6 +9,15 @@ const gamesModel = {
             return { msg: "OK", data: rows };
         } catch (error) {
             throw new Error(error.msg);
+        }
+    },
+
+    getGame: async(nmGame) => {
+        try {            
+            const { rows } = await postgre.query("select * from games where name = $1", [nmGame]); 
+            return { msg: "OK", data: rows };
+        } catch (error) {
+            throw new Error(error);
         }
     },
 
@@ -22,30 +33,33 @@ const gamesModel = {
     insertDataGame: async (data) => {
         try {
             const { name, last_draw, next_draw, date_last_draw, date_next_draw, number_min, number_max } = data;
-
+            
             const sql = `INSERT INTO GAMES(name, last_draw, next_draw, date_last_draw, date_next_draw, number_min, number_max) 
-            VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`;
+            SELECT $1::text, $2::integer, $3::integer, $4::timestamp, $5::timestamp, $6::integer, $7::integer 
+            WHERE NOT EXISTS (SELECT 1 FROM GAMES WHERE name = $1)
+            RETURNING *`;
 
-            const { rows } = await postgre.query(sql, [name, last_draw, next_draw, date_last_draw, date_next_draw, number_min, number_max]);
+            const { rows } = await postgre.query(sql, [name, last_draw, next_draw, functionCommons.getDate(functionCommons.formateDate(date_last_draw)), functionCommons.getDate(functionCommons.formateDate(date_next_draw)), number_min, number_max]);
 
-            return { msg: "OK", data: rows[0] };
+            return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
         } catch (error) {
-            throw new Error(error.msg);
+            throw new Error(error);
         }
     },
 
-    insertDataGameDraw: async (data, GAME_ID) => {
+    insertDataGameDraw: async (data, idGame) => {
         try {
-            const { drawn, date, scores } = data;            
-
+            const { drawn, date, scores } = data;
             const sql = `INSERT INTO GAME_DRAW(GAME_ID, DRAW, DATE_DRAW, SCORES) 
-            VALUES($1, $2, $3, $4) RETURNING *`;
+            SELECT $1::integer, $2::integer, $3::date, $4::text
+            WHERE NOT EXISTS (SELECT 1 FROM GAME_DRAW WHERE GAME_ID = $1 AND DRAW = $2 AND DATE_DRAW = $3 AND SCORES = $4)
+            RETURNING *`;
 
-            const { rows } = await postgre.query(sql, [GAME_ID, drawn, date, scores]);
+            const { rows } = await postgre.query(sql, [idGame, drawn, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
 
-            return { msg: "OK", data: rows.length };
+            return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
         } catch (error) {
-            throw new Error(error.msg);
+            throw new Error(error);
         }
     }
 
