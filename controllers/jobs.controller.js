@@ -1,7 +1,7 @@
 const jobsController = {
     mainJob: async (request, res) => {
         try {
-            const authHeader = request.headers.get('Authorization');
+            const authHeader = request.headers['authorization'];
 
             if (!authHeader || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
                 return res.status(401).json({ error: 'Unauthorized' });
