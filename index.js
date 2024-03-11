@@ -18,8 +18,8 @@ const gamesRouter = require('./routes/games.router')
 
 app.use("/api/lottery-results/games", gamesRouter);
 
-const cron = require('./api/cron/route');
+const cron = require('./routes/jobs.router');
 
-app.use("api/cron", cron);
+app.use("/api/cron", cron);
 
 app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}`));
