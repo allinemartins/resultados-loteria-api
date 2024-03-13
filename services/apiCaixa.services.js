@@ -4,7 +4,7 @@ const https = require('https');
 class ApiCaixa {
 
     constructor(game, draw) {
-        this.apiRequest = `${process.env.ApiCaixa}${game.toLowerCase()}/${draw}`;
+        this.apiRequest = `${process.env.APICAIXA}${game.toLowerCase()}/${draw}`;
     }
 
     async getData() {
