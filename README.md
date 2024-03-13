@@ -27,3 +27,17 @@ npm install
 ```bash
 node index
 ```
+```bash
+npm start
+```
+
+# Tests do projeto
+```bash
+npm test
+```
+```bash
+node ./tests/mainJob.js
+```
+```bash
+node ./tests/statisticalJob.js
+```
