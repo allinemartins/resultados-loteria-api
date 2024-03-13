@@ -28,6 +28,18 @@ const gamesController = {
         }
     },
 
+    getStatisticalGame: async (req, res) => {
+        try {
+            const { data } = await gamesModel.getStatisticalGame(req.params.game);            
+            if(data && data.length > 0){                
+                data[0].statistical = JSON.parse(data[0].statistical);
+            }
+            res.json({ msg: "OK", data: data })
+        } catch (error) {
+            res.json({ msg: error })
+        }
+    },
+
     //insertPreData
     insertPreDataGame: async (data) => {
         try {

@@ -1,11 +1,11 @@
 {
   "name": "resultados-loteria-api",
   "version": "1.0.0",
-  "description": "Api with results the drawns of Caixa",
+  "description": "Api with results the draws of Caixa",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node ./tests/cronJob.js"
+    "test": "node ./tests/mainJob.js"
   },
   "author": "Alline Martins",
   "license": "ISC",

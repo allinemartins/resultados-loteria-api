@@ -25,7 +25,16 @@ const gamesModel = {
 
     getAllGameDraws: async(param) => {
         try {
-            const { rows } = await postgre.query("select gd.* from games g, game_draw gd where g.game_id = gd.game_id and g.name = $1", [param])
+            const { rows } = await postgre.query("select gd.*, g.name from games g, game_draw gd where g.game_id = gd.game_id and g.name = $1", [param])
+            return {msg: "OK", data: rows};
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+
+    getStatisticalGame: async(param) => {
+        try {
+            const { rows } = await postgre.query("select gs.*, g.name from games g, game_statistical gs where g.game_id = gs.game_id and g.name = $1", [param])
             return {msg: "OK", data: rows};
         } catch (error) {
             throw new Error(error);
@@ -51,13 +60,13 @@ const gamesModel = {
 
     insertDataGameDraw: async (data, idGame) => {
         try {
-            const { drawn, date, scores } = data;
+            const { draw, date, scores } = data;
             const sql = `INSERT INTO GAME_DRAW(GAME_ID, DRAW, DATE_DRAW, SCORES) 
             SELECT $1::integer, $2::integer, $3::date, $4::text
             WHERE NOT EXISTS (SELECT 1 FROM GAME_DRAW WHERE GAME_ID = $1 AND DRAW = $2 AND DATE_DRAW = $3 AND SCORES = $4)
             RETURNING *`;
 
-            const { rows } = await postgre.query(sql, [idGame, drawn, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
+            const { rows } = await postgre.query(sql, [idGame, draw, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
 
             return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
         } catch (error) {
@@ -73,6 +82,33 @@ const gamesModel = {
 
             const { rows } = await postgre.query(sql, [last_draw, next_draw, functionCommons.getDate(functionCommons.formateDate(date_last_draw)), functionCommons.getDate(functionCommons.formateDate(date_next_draw)), idGame]);
 
+            return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not update register' };
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+
+    insertStatisticalGame: async (statistical, idGame) => {
+        try {            
+            const sql = `INSERT INTO GAME_STATISTICAL(GAME_ID, STATISTICAL) 
+            SELECT $1::integer, $2::text
+            WHERE NOT EXISTS (SELECT 1 FROM GAME_STATISTICAL WHERE GAME_ID = $1)
+            RETURNING *`;
+
+            const { rows } = await postgre.query(sql, [idGame, statistical]);
+            if(rows && rows.length > 0){
+                return { msg: "OK", data: rows[0] };
+            }
+            return { msg: false, data: 'Not insert, already exists' };
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+
+    updateStatisticalGame: async (statistical, idGame) => {
+        try {            
+            const sql = `UPDATE GAME_STATISTICAL SET STATISTICAL = $1::text WHERE GAME_ID = $2::integer RETURNING *`;
+            const { rows } = await postgre.query(sql, [statistical, idGame]);
             return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not update register' };
         } catch (error) {
             throw new Error(error);

@@ -1,5 +1,5 @@
 // cronJobs.js
-const jobsController = require('./../controllers/jobs.controller');
+const jobsController = require('../controllers/jobs.controller');
 
 const mockRequest = {
   headers: {

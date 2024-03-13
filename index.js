@@ -14,7 +14,7 @@ app.use(express.json());
 
 const gamesRouter = require('./routes/games.router')
 
-app.use("/api/lottery-results/games", gamesRouter);
+app.use("/api/lottery-results/", gamesRouter);
 
 const cron = require('./routes/jobs.router');
 
