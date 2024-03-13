@@ -1,6 +1,3 @@
-//dotenv config - database
-require('dotenv').config();
-
 // Chame a função de inserção do modelo com os dados do arquivo JSON
 const gamesController = require('./controllers/games.controller');
 

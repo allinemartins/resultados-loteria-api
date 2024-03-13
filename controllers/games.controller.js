@@ -6,7 +6,7 @@ const gamesController = {
             const { data } = await gamesModel.getAllGames();
             res.json({ msg: "OK", data: data })
         } catch (error) {
-            res.json({ msg: error.msg })
+            res.json({ msg: error })
         }
     },
 
@@ -24,7 +24,7 @@ const gamesController = {
             const { data } = await gamesModel.getAllGameDraws(req.params.game);
             res.json({ msg: "OK", data: data })
         } catch (error) {
-            res.json({ msg: error.msg })
+            res.json({ msg: error })
         }
     },
 
@@ -46,7 +46,6 @@ const gamesController = {
             console.error(error);
         }
     }
-
 }
 
 module.exports = gamesController

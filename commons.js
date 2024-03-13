@@ -17,6 +17,16 @@ class Commons {
         return partsDate[2] + "-" + partsDate[1] + "-" + partsDate[0];
     }
 
+    compareDate(data) {
+        if (data && data != '') {
+            // Convertendo as strings de data para objetos Date
+            const dataConcurso = new Date(data);
+            const dataAtual = new Date(this.getDate());            
+            return dataAtual > dataConcurso;
+        }
+        return true;
+    }
+
 }
 
 module.exports = Commons

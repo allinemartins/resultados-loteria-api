@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const postgre = require('../database');
 const Commons = require('../commons');
 const functionCommons = new Commons();
@@ -8,7 +10,7 @@ const gamesModel = {
             const { rows } = await postgre.query("select * from games");
             return { msg: "OK", data: rows };
         } catch (error) {
-            throw new Error(error.msg);
+            throw new Error(error);
         }
     },
 
@@ -26,7 +28,7 @@ const gamesModel = {
             const { rows } = await postgre.query("select gd.* from games g, game_draw gd where g.game_id = gd.game_id and g.name = $1", [param])
             return {msg: "OK", data: rows};
         } catch (error) {
-            return {msg: error.msg};
+            throw new Error(error);
         }
     },
 
@@ -58,6 +60,20 @@ const gamesModel = {
             const { rows } = await postgre.query(sql, [idGame, drawn, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
 
             return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
+        } catch (error) {
+            throw new Error(error);
+        }
+    },
+    updateDataGame: async (data, idGame) => {
+        try {
+            const { last_draw, next_draw, date_last_draw, date_next_draw } = data;
+            
+            const sql = `UPDATE GAMES SET last_draw = $1::integer, next_draw = $2::integer, date_last_draw = $3::date, date_next_draw = $4::date
+            WHERE GAME_ID = $5::integer RETURNING *`;
+
+            const { rows } = await postgre.query(sql, [last_draw, next_draw, functionCommons.getDate(functionCommons.formateDate(date_last_draw)), functionCommons.getDate(functionCommons.formateDate(date_next_draw)), idGame]);
+
+            return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not update register' };
         } catch (error) {
             throw new Error(error);
         }
