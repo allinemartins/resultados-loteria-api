@@ -15,11 +15,11 @@
   "crons": [
     {
       "path": "/api/cron",
-      "schedule": "30 23 * * *"
+      "schedule": "10 14 * * *"
     },
     {
       "path": "/api/cron/generationStatisticals",
-      "schedule": "0 0 * * *"
+      "schedule": "20 14 * * *"
     }
   ]
 }
