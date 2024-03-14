@@ -7,7 +7,7 @@ const functionCommons = new Commons();
 const gamesModel = {
     getAllGames: async() => {
         try {
-            const { rows } = await postgre.query("select * from games");
+            const { rows } = await postgre.query("select game_id, name, last_draw, next_draw, TO_CHAR(date_last_draw, 'YYYY-MM-DD') as date_last_draw, TO_CHAR(date_next_draw, 'YYYY-MM-DD') as date_next_draw, number_min, number_max, TO_CHAR(date_update - INTERVAL '3 hours', 'YYYY-MM-DD HH24:MI:SS') as date_update from games order by name asc");
             return { msg: "OK", data: rows };
         } catch (error) {
             throw new Error(error);
@@ -16,7 +16,7 @@ const gamesModel = {
 
     getGame: async(nmGame) => {
         try {            
-            const { rows } = await postgre.query("select * from games where name = $1", [nmGame]); 
+            const { rows } = await postgre.query("select game_id, name, last_draw, next_draw, TO_CHAR(date_last_draw, 'YYYY-MM-DD') as date_last_draw, TO_CHAR(date_next_draw, 'YYYY-MM-DD') as date_next_draw, number_min, number_max, TO_CHAR(date_update - INTERVAL '3 hours', 'YYYY-MM-DD HH24:MI:SS') as date_update from games where name = $1 order by name asc", [nmGame]); 
             return { msg: "OK", data: rows };
         } catch (error) {
             throw new Error(error);
@@ -25,7 +25,7 @@ const gamesModel = {
 
     getAllGameDraws: async(param) => {
         try {
-            const { rows } = await postgre.query("select gd.*, g.name from games g, game_draw gd where g.game_id = gd.game_id and g.name = $1", [param])
+            const { rows } = await postgre.query("select gd.game_draw_id,gd.draw, gd.game_id, g.name, TO_CHAR(gd.date_draw, 'YYYY-MM-DD') as date_draw, TO_CHAR(gd.date_update - INTERVAL '3 hours', 'YYYY-MM-DD HH24:MI:SS') as date_update  from games g, game_draw gd where g.game_id = gd.game_id and g.name = $1 order by gd.draw desc", [param])
             return {msg: "OK", data: rows};
         } catch (error) {
             throw new Error(error);
@@ -34,7 +34,7 @@ const gamesModel = {
 
     getStatisticalGame: async(param) => {
         try {
-            const { rows } = await postgre.query("select gs.*, g.name from games g, game_statistical gs where g.game_id = gs.game_id and g.name = $1", [param])
+            const { rows } = await postgre.query("select gs.game_statistical_id, gs.game_id, g.name, TO_CHAR(gs.date_update - INTERVAL '3 hours', 'YYYY-MM-DD HH24:MI:SS') as date_update, gs.statistical from games g, game_statistical gs where g.game_id = gs.game_id and g.name = $1", [param])
             return {msg: "OK", data: rows};
         } catch (error) {
             throw new Error(error);
