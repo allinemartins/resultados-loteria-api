@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-const cronNode = require('node-cron');
 
 // Configuração para servir arquivos estáticos (como o index.html)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,34 +22,22 @@ app.use("/api/cron", cron);
 
 app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}`));
 
-cronNode.schedule('* 20 * * *', async () => {
-    console.log('Tarefa cron sendo iniciada');
-    const data = await getData();
-    console.log(data);
-    console.log(`Tarefa cron finalizada`);
-});
+const CronJob = require('cron').CronJob;
 
-async function getData() {
-    const url = "https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/3045";
-    try {
-        const resposta = await getApiURL(url);        
-        return resposta;            
-    } catch (erro) {
-        console.error('Error in the made request:', `${erro.message} ${url}`);
-        return false;
-    }
+// Função para ser executada pelo cron job
+function minhaFuncaoCron() {
+    console.log('Esta função é executada pelo cron job.');
 }
 
-const axios = require('axios');
+// Definindo o cron job para ser executado a cada minuto
+const job = new CronJob('*/1 * * * *', minhaFuncaoCron);
 
-function getApiURL(apiUrl) {
-    return new Promise((resolve, reject) => {
-        axios.get(apiUrl)
-            .then(response => {
-                resolve(response.data);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+// Iniciando o cron job
+job.start();
+
+console.log('Cron job iniciado.');
+
+// Mantendo o processo em execução
+setInterval(() => {
+    console.log('O servidor está ativo.');
+}, 60000); // Log a cada minuto para manter o servidor ativo
