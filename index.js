@@ -22,22 +22,3 @@ app.use("/api/cron", cron);
 
 app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}`));
 
-const CronJob = require('cron').CronJob;
-
-// Função para ser executada pelo cron job
-function minhaFuncaoCron() {
-    console.log('Esta função é executada pelo cron job.');
-}
-
-// Definindo o cron job para ser executado a cada minuto
-const job = new CronJob('*/1 * * * *', minhaFuncaoCron);
-
-// Iniciando o cron job
-job.start();
-
-console.log('Cron job iniciado.');
-
-// Mantendo o processo em execução
-setInterval(() => {
-    console.log('O servidor está ativo.');
-}, 60000); // Log a cada minuto para manter o servidor ativo

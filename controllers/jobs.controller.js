@@ -10,8 +10,8 @@ const jobsController = {
                 return response.status(401).json({ error: 'Unauthorized' });
             }
 
-            const gservives = new gamesServices();
-            const data = await gservives.getDraws();
+            /*const gservives = new gamesServices();
+            const data = await gservives.getDraws();*/
             console.log(`Hello Cron Job, Data: ${new Date()}`);            
             return response.status(200).json({ success: true, data: data });
         } catch (error) {
