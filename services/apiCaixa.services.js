@@ -1,3 +1,5 @@
+const { getApiURL } = require('./../public/src/api');
+
 class ApiCaixa {
 
     constructor(game, draw) {
@@ -5,19 +7,11 @@ class ApiCaixa {
     }
 
     async getData() {
-        try {
-            const response = await fetch(this.apiRequest);
-            // Verificando se a resposta da solicitação é bem-sucedida (status 200)
-            if (!response.ok) {
-                throw new Error('Erro ao fazer a solicitação GET');
-            }
-            // Convertendo a resposta para JSON
-            const data = await response.json();
-            console.log('Dados recebidos:', data);
-            return data;
-        } catch (error) {
-            // Capturando e tratando erros
-            console.error('Ocorreu um erro:', error);
+        try {            
+            const resposta = await getApiURL(this.apiRequest);
+            return resposta;            
+        } catch (erro) {
+            console.error('Error in the made request:', `${erro.message} ${this.apiRequest}`);
             return false;
         }
     }
