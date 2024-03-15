@@ -19,7 +19,7 @@
     },
     {
       "path": "/api/cron/generationStatisticals",
-      "schedule": "* 16 * * *"
+      "schedule": "10 16 * * *"
     }
   ]
 }
