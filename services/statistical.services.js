@@ -5,7 +5,7 @@ class StatisticalData {
         this.draws = draws;
     }
 
-    calculateStatisticalData() {
+    calculateStatisticalData() {        
         let frequencies = this.getStatisticalObject(this.game);
         if (this.draws.length > 0) {
             this.draws.sort((a, b) => b.draw - a.draw);
@@ -31,7 +31,7 @@ class StatisticalData {
 
     getLastDrawFrequencyDelay(draws, frequencies) {
         let lastDraw = draws[0].draw;
-        draws.forEach((draw) => {
+        draws.forEach((draw) => {            
             let scores = this.parseStringForArrayNumber(draw.scores);            
             scores.forEach((number) => {
                 let nb = number;//Number(number);
