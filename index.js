@@ -20,5 +20,18 @@ const cron = require('./routes/jobs.router');
 
 app.use("/api/cron", cron);
 
+
+app.get('/testeAPICAIXA', async (_req, res) => {
+    try {
+      const response = await axios.get('https://servicebus2.caixa.gov.br/portaldeloterias/api/quina/3049');
+      res.json(response.data);
+    } catch (error) {
+      console.error('Erro ao acessar a API:', error);
+      res.status(500).json({ error: 'Erro ao acessar a API' });
+    }
+  });
+
+
+
 app.listen(process.env.PORT, () => console.log(`Server is running on port ${process.env.PORT}`));
 
