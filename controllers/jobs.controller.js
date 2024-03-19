@@ -10,12 +10,12 @@ const jobsController = {
                 return response.status(401).json({ error: 'Unauthorized' });
             }
 
-            /*const gservives = new gamesServices();
-            const data = await gservives.getDraws();*/
-            console.log(`Hello Cron Job, Data: ${new Date()}`);            
+            const gservives = new gamesServices();
+            const data = await gservives.getDraws();
+            //console.log(`Hello Cron Job, Data: ${new Date()}`);            
             return response.status(200).json({ success: true, data: data });
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             return response.status(500).json({ error: 'Internal Server Error' });
         }
     },
