@@ -24,7 +24,7 @@ const cron = require('./routes/jobs.router');
 app.use("/api/cron", cron);
 
 
-app.get('/testeAPICAIXA', async (_req, res) => {
+app.get('/api/testeAPICAIXA', async (_req, res) => {
     try {
         const response = await teste('https://servicebus2.caixa.gov.br/portaldeloterias/api/quina/3049');
         if (!response.ok) {
