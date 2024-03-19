@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require('path');
+const axios = require('axios');
+const https = require('https');
 
 // Configuração para servir arquivos estáticos (como o index.html)
 app.use(express.static(path.join(__dirname, 'public')));
