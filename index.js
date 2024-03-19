@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const axios = require('axios');
 const https = require('https');
+import teste from 'node-fetch';
 
 // Configuração para servir arquivos estáticos (como o index.html)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -25,12 +26,16 @@ app.use("/api/cron", cron);
 
 app.get('/testeAPICAIXA', async (_req, res) => {
     try {
-      const response = await axios.get('https://servicebus2.caixa.gov.br/portaldeloterias/api/quina/3049');
-      res.json(response.data);
-    } catch (error) {
-      console.error('Erro ao acessar a API:', error);
-      res.status(500).json({ error: 'Erro ao acessar a API' });
-    }
+        const response = await teste('https://servicebus2.caixa.gov.br/portaldeloterias/api/quina/3049');
+        if (!response.ok) {
+          throw new Error('Erro ao acessar a API');
+        }
+        const data = await response.json();
+        res.json(data);
+      } catch (error) {
+        console.error('Erro ao acessar a API:', error);
+        res.status(500).json({ error: 'Erro ao acessar a API' });
+      }
   });
 
 
