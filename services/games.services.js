@@ -11,7 +11,7 @@ class GamesServices {
         if (data && data.length > 0) {
             for (const game of data) {
                 if (game.next_draw && cm.compareDate(game.date_next_draw)) {
-                    const draw = await this.getDataApi(game);
+                    const draw = await this.getDataApi(game);                    
                     if (draw) {
                         const insert = await this.insertDraw(draw, game.game_id);
                         if (insert && insert.msg === "OK") {
@@ -39,6 +39,7 @@ class GamesServices {
             "date": data.dataApuracao,
             "scores": data.listaDezenas
         }
+        console.log(draw);
         const insert = await gamesModel.insertDataGameDraw(draw, idGame);
         return insert;
     }

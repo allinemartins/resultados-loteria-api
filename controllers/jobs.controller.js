@@ -1,5 +1,4 @@
 const gamesServices = require('./../services/games.services');
-const statisticalServices = require('./../services/statistical.services');
 
 const jobsController = {
     mainJob: async (request, response) => {
@@ -12,10 +11,10 @@ const jobsController = {
 
             const gservives = new gamesServices();
             const data = await gservives.getDraws();
-            //console.log(`Hello Cron Job, Data: ${new Date()}`);            
+            console.log(`Hello Cron Job, Data: ${new Date()}`);            
             return response.status(200).json({ success: true, data: data });
         } catch (error) {
-            //console.error(error);
+            console.error(error);
             return response.status(500).json({ error: 'Internal Server Error' });
         }
     },
