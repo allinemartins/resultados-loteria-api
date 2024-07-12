@@ -11,14 +11,15 @@ class GamesServices {
         if (data && data.length > 0) {
             for (const game of data) {
                 if (game.next_draw && cm.compareDate(game.date_next_draw)) {
-                    const draw = await this.getDataApi(game);                    
+                    const draw = await this.getDataApi(game);                       
                     if (draw) {
-                        const insert = await this.insertDraw(draw, game.game_id);
+                        console.log(draw);
+                        /*const insert = await this.insertDraw(draw, game.game_id);
                         if (insert && insert.msg === "OK") {
                             console.log(`Insert draw: ${insert.msg}`);
                             const update = await this.updateGame(draw, game.game_id);
                             console.log(`Update game: ${update.msg}`);
-                        }
+                        }*/
                     } else {
                         console.log('Not do request');
                     }
@@ -29,7 +30,7 @@ class GamesServices {
     }
 
     async getDataApi(game) {
-        const api = new ApiCaixa(game.name, game.next_draw);
+        const api = new ApiCaixa(game.name, game.next_draw, game.date_next_draw);
         return api.getData();
     }
 

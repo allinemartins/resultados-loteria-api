@@ -67,7 +67,8 @@ const gamesModel = {
             RETURNING *`;
 
             const { rows } = await postgre.query(sql, [idGame, draw, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
-
+            console.log(data);
+            console.log(functionCommons.getDate(functionCommons.formateDate(date)));
             return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
         } catch (error) {
             throw new Error(error);
