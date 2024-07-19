@@ -66,9 +66,7 @@ const gamesModel = {
             WHERE NOT EXISTS (SELECT 1 FROM GAME_DRAW WHERE GAME_ID = $1 AND DRAW = $2 AND DATE_DRAW = $3 AND SCORES = $4)
             RETURNING *`;
 
-            const { rows } = await postgre.query(sql, [idGame, draw, functionCommons.getDate(functionCommons.formateDate(date)), scores]);
-            console.log(data);
-            console.log(functionCommons.getDate(functionCommons.formateDate(date)));
+            const { rows } = await postgre.query(sql, [idGame, draw, functionCommons.getDate(functionCommons.formateDate(date)), scores]);            
             return { msg: "OK", data: (rows[0]) ? rows[0] : 'Not insert, already exists' };
         } catch (error) {
             throw new Error(error);

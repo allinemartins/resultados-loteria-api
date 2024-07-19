@@ -7,24 +7,28 @@ const cm = new commons();
 class GamesServices {
 
     async getDraws() {
-        const { data } = await gamesModel.getAllGames();
-        if (data && data.length > 0) {
-            for (const game of data) {
-                if (game.next_draw && cm.compareDate(game.date_next_draw)) {
-                    const draw = await this.getDataApi(game);                       
-                    if (draw) {
-                        console.log(draw);
-                        /*const insert = await this.insertDraw(draw, game.game_id);
-                        if (insert && insert.msg === "OK") {
-                            console.log(`Insert draw: ${insert.msg}`);
-                            const update = await this.updateGame(draw, game.game_id);
-                            console.log(`Update game: ${update.msg}`);
-                        }*/
-                    } else {
-                        console.log('Not do request');
+        const today = new Date();
+        let currentDate = new Date('2024-07-12');
+        while (currentDate <= today) {
+            const { data } = await gamesModel.getAllGames();        
+            if (data && data.length > 0) {
+                for (const game of data) {
+                    if (game.next_draw && cm.compareDate(game.date_next_draw)) {
+                        const draw = await this.getDataApi(game);                       
+                        if (draw && draw.hasOwnProperty('numero')) {                        
+                            const insert = await this.insertDraw(draw, game.game_id);
+                            if (insert && insert.msg === "OK") {
+                                console.log(`Insert draw: ${insert.msg}`);
+                                const update = await this.updateGame(draw, game.game_id);
+                                console.log(`Update game: ${update.msg}`);
+                            }
+                        } else {
+                            console.log('Not do request');
+                        }
                     }
                 }
             }
+            currentDate = cm.incrementDate(currentDate);
         }
         return { msg: "OK" }
     }
@@ -39,8 +43,7 @@ class GamesServices {
             "draw": data.numero,
             "date": data.dataApuracao,
             "scores": data.listaDezenas
-        }
-        console.log(draw);
+        }        
         const insert = await gamesModel.insertDataGameDraw(draw, idGame);
         return insert;
     }

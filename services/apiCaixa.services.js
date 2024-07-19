@@ -17,9 +17,9 @@ class ApiCaixa {
     } catch (error) {
       // Caixa API failed - fallback to Gemini
       console.error('Falha ao buscar dados da API da Caixa:', error.message);
-      console.warn('Tentando buscar dados do Gemini...');
+      //console.warn('Tentando buscar dados do Gemini...');
 
-      return await this.getLotteryDataFromGemini(); 
+      //return await this.getLotteryDataFromGemini(); 
     }
   }
 
@@ -45,7 +45,7 @@ class ApiCaixa {
     };
   }
 
-  async getLotteryDataFromGemini() {
+  /*async getLotteryDataFromGemini() {
     try {
             const parts = [
 				{text: `Você é o chatbot de um site que fornece informações sobre os concursos da Loteria da Caixa Econômica, Brasil.
@@ -76,7 +76,7 @@ class ApiCaixa {
             console.error('Error in the made request:', `${erro.message}`);
             return {}
         }
-  }
+  }*/
 }
 
 // Exportar a classe ApiCaixa
